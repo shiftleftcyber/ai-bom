@@ -2,6 +2,12 @@
 
 This repository contains an AI SBOM JSON Schema derived from the minimum element clusters in `SBOM-for-AI_minimum-elements.pdf`.
 
+Published docs and schema URLs are available at:
+
+```text
+https://shiftleftcyber.io/ai-bom/
+```
+
 The source PDF is also published for direct download at:
 
 ```text
