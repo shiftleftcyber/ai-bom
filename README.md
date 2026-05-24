@@ -2,11 +2,18 @@
 
 This repository contains an AI SBOM JSON Schema derived from the minimum element clusters in `SBOM-for-AI_minimum-elements.pdf`.
 
+The source PDF is also published for direct download at:
+
+```text
+https://shiftleftcyber.io/ai-bom/assets/SBOM-for-AI_minimum-elements.pdf
+```
+
 ## Files
 
 - `ai-sbom.schema.json`: Draft 2020-12 JSON Schema for an AI SBOM.
 - `docs/schemas/ai-sbom-1.0.0.schema.json`: Immutable versioned schema URL for GitHub Pages.
 - `docs/schemas/ai-sbom.schema.json`: Latest schema URL for GitHub Pages.
+- `docs/assets/SBOM-for-AI_minimum-elements.pdf`: GitHub Pages-hosted copy of the source PDF.
 - `examples/valid/customer-support-ai-sbom.json`: Valid SBOM for a customer support assistant.
 - `examples/valid/medical-triage-ai-sbom.json`: Valid SBOM for a medical triage recommender.
 - `examples/invalid/missing-required-metadata.json`: Invalid because required metadata and required nested cluster fields are missing. It intentionally omits `sbomTimestamp`; `sbomAuthorSignature` is optional.
