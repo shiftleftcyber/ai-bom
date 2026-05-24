@@ -5,6 +5,8 @@ This repository contains an AI SBOM JSON Schema derived from the minimum element
 ## Files
 
 - `ai-sbom.schema.json`: Draft 2020-12 JSON Schema for an AI SBOM.
+- `docs/schemas/ai-sbom-1.0.0.schema.json`: Immutable versioned schema URL for GitHub Pages.
+- `docs/schemas/ai-sbom.schema.json`: Latest schema URL for GitHub Pages.
 - `examples/valid/customer-support-ai-sbom.json`: Valid SBOM for a customer support assistant.
 - `examples/valid/medical-triage-ai-sbom.json`: Valid SBOM for a medical triage recommender.
 - `examples/invalid/missing-required-metadata.json`: Invalid because required metadata and required nested cluster fields are missing. It intentionally omits `sbomTimestamp`; `sbomAuthorSignature` is optional.
@@ -24,5 +26,25 @@ The schema models the seven clusters described in the PDF:
 - Key Performance Indicators
 
 For automation, the schema requires `metadata.bomFormat` with the fixed value `AI-SBOM`. This gives tools a small discriminator field for identifying this format without relying on file names.
+
+## Consuming the Schema
+
+Use the immutable versioned URL when you want reproducible validation:
+
+```text
+https://shiftleftcyber.github.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json
+```
+
+Use the latest URL when you intentionally want the newest compatible schema:
+
+```text
+https://shiftleftcyber.github.io/ai-bom/schemas/ai-sbom.schema.json
+```
+
+You can also pin directly to a Git tag:
+
+```text
+https://raw.githubusercontent.com/shiftleftcyber/ai-bom/v1.0.0/ai-sbom.schema.json
+```
 
 The schema is intentionally strict with `additionalProperties: false` so that nonconforming examples fail predictably, but lifecycle-dependent fields such as signatures, hashes, licenses, security evidence, infrastructure details, and KPIs are optional.
