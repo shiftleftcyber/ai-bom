@@ -68,3 +68,7 @@ You can also pin directly to a Git tag:
 [https://raw.githubusercontent.com/shiftleftcyber/ai-bom/v1.0.0/ai-sbom.schema.json](https://raw.githubusercontent.com/shiftleftcyber/ai-bom/v1.0.0/ai-sbom.schema.json)
 
 The schema is intentionally strict with `additionalProperties: false` so that nonconforming examples fail predictably, but lifecycle-dependent fields such as signatures, hashes, licenses, security evidence, infrastructure details, and KPIs are optional.
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE). Apache-2.0 was chosen because it is permissive like MIT while also including an explicit patent grant, which is useful for an interoperability-focused schema and related tooling.
