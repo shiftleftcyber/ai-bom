@@ -4,15 +4,11 @@ This repository contains an AI SBOM JSON Schema derived from the minimum element
 
 Published docs and schema URLs are available at:
 
-```text
-https://shiftleftcyber.io/ai-bom/
-```
+[https://shiftleftcyber.io/ai-bom/](https://shiftleftcyber.io/ai-bom/)
 
 The source PDF is also published for direct download at:
 
-```text
-https://shiftleftcyber.io/ai-bom/assets/SBOM-for-AI_minimum-elements.pdf
-```
+[https://shiftleftcyber.io/ai-bom/assets/SBOM-for-AI_minimum-elements.pdf](https://shiftleftcyber.io/ai-bom/assets/SBOM-for-AI_minimum-elements.pdf)
 
 ## Files
 
@@ -44,20 +40,14 @@ For automation, the schema requires `metadata.bomFormat` with the fixed value `A
 
 Use the immutable versioned URL when you want reproducible validation:
 
-```text
-https://shiftleftcyber.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json
-```
+[https://shiftleftcyber.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json](https://shiftleftcyber.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json)
 
 Use the latest URL when you intentionally want the newest compatible schema:
 
-```text
-https://shiftleftcyber.io/ai-bom/schemas/ai-sbom.schema.json
-```
+[https://shiftleftcyber.io/ai-bom/schemas/ai-sbom.schema.json](https://shiftleftcyber.io/ai-bom/schemas/ai-sbom.schema.json)
 
 You can also pin directly to a Git tag:
 
-```text
-https://raw.githubusercontent.com/shiftleftcyber/ai-bom/v1.0.0/ai-sbom.schema.json
-```
+[https://raw.githubusercontent.com/shiftleftcyber/ai-bom/v1.0.0/ai-sbom.schema.json](https://raw.githubusercontent.com/shiftleftcyber/ai-bom/v1.0.0/ai-sbom.schema.json)
 
 The schema is intentionally strict with `additionalProperties: false` so that nonconforming examples fail predictably, but lifecycle-dependent fields such as signatures, hashes, licenses, security evidence, infrastructure details, and KPIs are optional.
