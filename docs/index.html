@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AI SBOM JSON Schema</title>
-    <meta name="description" content="Published JSON Schema for AI Software Bill of Materials documents, including versioned and latest schema URLs for validators, CI workflows, and supply chain security automation.">
+    <meta name="description" content="Published JSON Schema for AI Software Bill of Materials documents, based on G7 Cybersecurity Working Group minimum elements and designed for validators, CI workflows, and AI supply chain security automation.">
     <meta name="keywords" content="AI SBOM, SBOM for AI, Software Bill of Materials, JSON Schema, AI security, supply chain security, cybersecurity, SPDX, CycloneDX, AI governance, machine learning security">
     <meta name="author" content="Shift Left Cyber">
     <meta name="robots" content="index, follow">
@@ -13,19 +13,19 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shift Left Cyber AI BOM">
     <meta property="og:title" content="AI SBOM JSON Schema">
-    <meta property="og:description" content="A machine-consumable JSON Schema for AI Software Bill of Materials documents, published with immutable versioned URLs and GitHub release assets.">
+    <meta property="og:description" content="A machine-consumable JSON Schema for AI Software Bill of Materials documents based on G7 Cybersecurity Working Group minimum elements.">
     <meta property="og:url" content="https://shiftleftcyber.io/ai-bom/">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="AI SBOM JSON Schema">
-    <meta name="twitter:description" content="A published JSON Schema for AI Software Bill of Materials automation and validation.">
+    <meta name="twitter:description" content="A published JSON Schema for AI Software Bill of Materials automation and validation, based on G7 minimum elements.">
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SoftwareSourceCode",
         "name": "AI SBOM JSON Schema",
-        "description": "A JSON Schema for AI Software Bill of Materials documents, designed for validators, CI workflows, and AI supply chain security automation.",
+        "description": "A JSON Schema for AI Software Bill of Materials documents, based on G7 Cybersecurity Working Group minimum elements and designed for validators, CI workflows, and AI supply chain security automation.",
         "codeRepository": "https://github.com/shiftleftcyber/ai-bom",
         "url": "https://shiftleftcyber.io/ai-bom/",
         "programmingLanguage": "JSON Schema",
@@ -114,6 +114,10 @@
         color: var(--muted);
       }
 
+      ul {
+        color: var(--muted);
+      }
+
       a {
         color: var(--link);
       }
@@ -130,6 +134,14 @@
         border: 1px solid var(--border);
         border-radius: 8px;
       }
+
+      .callout {
+        margin: 24px 0;
+        padding: 18px 20px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
     </style>
   </head>
   <body>
@@ -139,6 +151,58 @@
         Published JSON Schema for AI Software Bill of Materials documents. Use these URLs directly
         from validators, CI workflows, and AI supply chain security automation.
       </p>
+
+      <div class="callout">
+        <p>
+          This schema provides a machine-readable format for describing the components,
+          relationships, datasets, models, infrastructure, security properties, and operational
+          indicators that make up an AI system. It is intended to help teams inventory AI systems
+          in a consistent way so downstream tools can validate, compare, scan, and reason about
+          AI supply chain information without relying on ad hoc spreadsheets or prose documents.
+        </p>
+      </div>
+
+      <h2>What This Is</h2>
+      <p>
+        An AI SBOM extends the familiar Software Bill of Materials idea to the AI system context.
+        In addition to software components and dependencies, an AI SBOM can document AI models,
+        model identifiers, model provenance, training and evaluation datasets, data flows,
+        infrastructure dependencies, security controls, vulnerability references, and performance
+        indicators. This repository publishes a JSON Schema so AI SBOM producers and consumers
+        have a stable contract for automation.
+      </p>
+
+      <h2>Source Basis</h2>
+      <p>
+        The schema is based on the minimum element clusters described in
+        <a href="https://github.com/shiftleftcyber/ai-bom/blob/main/SBOM-for-AI_minimum-elements.pdf">SBOM-for-AI_minimum-elements.pdf</a>,
+        a document created by the G7 Cybersecurity Working Group. Those minimum elements are
+        organized around metadata, system-level properties, models, dataset properties,
+        infrastructure, security properties, and key performance indicators.
+      </p>
+      <p>
+        For additional context, see CISA's
+        <a href="https://www.cisa.gov/resources-tools/resources/software-bill-materials-ai-minimum-elements">Software Bill of Materials for AI Minimum Elements</a>
+        resource and the Canadian Centre for Cyber Security's
+        <a href="https://www.cyber.gc.ca/en/guidance/top-10-artificial-intelligence-security-actions-primer-itsap10049">Top 10 artificial intelligence security actions primer</a>.
+      </p>
+
+      <h2>Why It Exists</h2>
+      <p>
+        AI systems often combine conventional software, third-party services, model artifacts,
+        datasets, specialized infrastructure, and policy or security controls. A standard schema
+        makes that information easier to exchange and validate. It also gives security teams a
+        simple discriminator field, <code>metadata.bomFormat</code>, with the fixed value
+        <code>AI-SBOM</code>, so tools can quickly identify AI SBOM documents.
+      </p>
+
+      <h2>Common Uses</h2>
+      <ul>
+        <li>Validating AI SBOM documents in CI before release.</li>
+        <li>Publishing AI system inventory data for customers, auditors, or internal governance teams.</li>
+        <li>Tracking model, dataset, dependency, and infrastructure relationships for AI supply chain security.</li>
+        <li>Building ingestion pipelines that normalize AI SBOM data for vulnerability management or risk analysis.</li>
+      </ul>
 
       <h2>Schema URLs</h2>
       <a class="schema-link" href="https://shiftleftcyber.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json">
