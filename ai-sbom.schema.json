@@ -167,6 +167,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "bomFormat",
         "sbomAuthor",
         "sbomVersion",
         "sbomDataFormatName",
@@ -174,6 +175,11 @@
         "sbomTimestamp"
       ],
       "properties": {
+        "bomFormat": {
+          "type": "string",
+          "const": "AI-SBOM",
+          "description": "Format discriminator for automation. The fixed value identifies the document as an AI SBOM."
+        },
         "sbomAuthor": {
           "$ref": "#/$defs/nonEmptyString"
         },

@@ -23,4 +23,6 @@ The schema models the seven clusters described in the PDF:
 - Security Properties
 - Key Performance Indicators
 
+For automation, the schema requires `metadata.bomFormat` with the fixed value `AI-SBOM`. This gives tools a small discriminator field for identifying this format without relying on file names.
+
 The schema is intentionally strict with `additionalProperties: false` so that nonconforming examples fail predictably, but lifecycle-dependent fields such as signatures, hashes, licenses, security evidence, infrastructure details, and KPIs are optional.

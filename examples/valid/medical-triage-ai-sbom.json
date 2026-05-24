@@ -1,6 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "metadata": {
+    "bomFormat": "AI-SBOM",
     "sbomAuthor": "Northwind Health Security Office",
     "sbomVersion": "1.1.0",
     "sbomDataFormatName": "AI SBOM JSON",

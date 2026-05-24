@@ -1,6 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "metadata": {
+    "bomFormat": "AI-SBOM",
     "sbomAuthor": "Contoso Security Engineering",
     "sbomVersion": "1.0.0",
     "sbomDataFormatName": "AI SBOM JSON",
