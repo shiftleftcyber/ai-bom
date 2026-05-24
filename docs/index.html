@@ -196,6 +196,31 @@
         <code>AI-SBOM</code>, so tools can quickly identify AI SBOM documents.
       </p>
 
+      <h2>Author Signatures</h2>
+      <p>
+        The optional <code>metadata.sbomAuthorSignature</code> field uses the JSON Signature
+        Format (JSF) <code>signaturecore</code> structure. JSF is already used by CycloneDX for
+        enveloped JSON signatures, so this schema follows an existing signing model rather than
+        inventing a new one. That improves interoperability with BOM-oriented tooling and gives
+        implementers a clearer path for signature generation and verification.
+      </p>
+      <p>
+        This schema currently supports only simple JSF <code>signaturecore</code>. It does not
+        yet support JSF multisignature <code>signers</code> or signature-chain <code>chain</code>
+        objects. A signature can include an algorithm, signature value, key identifier, embedded
+        public key, and certificate path. Embedded public keys make cryptographic verification
+        easier, while certificate paths and key identifiers can support stronger identity and trust
+        decisions when paired with a verifier's trust policy.
+      </p>
+      <p>
+        For simple signatures, the signed payload is the entire AI SBOM JSON document after JSON
+        Canonicalization Scheme processing, with only
+        <code>metadata.sbomAuthorSignature.value</code> removed before canonicalization. Other
+        signature fields, including <code>algorithm</code>, <code>keyId</code>,
+        <code>publicKey</code>, and <code>certificatePath</code>, remain part of the signed
+        payload.
+      </p>
+
       <h2>Common Uses</h2>
       <ul>
         <li>Validating AI SBOM documents in CI before release.</li>

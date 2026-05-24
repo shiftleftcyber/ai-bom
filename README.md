@@ -20,6 +20,7 @@ The source PDF is also published for direct download at:
 - `examples/valid/medical-triage-ai-sbom.json`: Valid SBOM for a medical triage recommender.
 - `examples/invalid/missing-required-metadata.json`: Invalid because required metadata and required nested cluster fields are missing. It intentionally omits `sbomTimestamp`; `sbomAuthorSignature` is optional.
 - `examples/invalid/bad-types-and-enums.json`: Invalid because several fields use the wrong type, invalid enum values, or empty arrays where at least one item is required.
+- `examples/invalid/non-jsf-signature.json`: Invalid because `metadata.sbomAuthorSignature` does not follow the JSF signaturecore structure.
 - `examples/invalid/unknown-extra-properties.json`: Invalid because extra properties are disallowed and the model hash algorithm/value are invalid.
 
 ## Source Mapping
@@ -35,6 +36,22 @@ The schema models the seven clusters described in the PDF:
 - Key Performance Indicators
 
 For automation, the schema requires `metadata.bomFormat` with the fixed value `AI-SBOM`. This gives tools a small discriminator field for identifying this format without relying on file names.
+
+## Author Signatures
+
+The optional `metadata.sbomAuthorSignature` field uses the JSON Signature Format (JSF) `signaturecore` structure. JSF is also used by CycloneDX for enveloped JSON signatures, so adopting it gives AI SBOM producers and consumers a familiar signing model instead of creating a new signature format.
+
+This schema currently supports only the simple JSF `signaturecore` form. It does not yet support JSF `signers` multisignature or `chain` signature-chain objects. The core fields are:
+
+- `algorithm`: JSF/JWA signature algorithm such as `ES256`, `RS256`, `PS256`, `Ed25519`, or a URI for proprietary algorithms.
+- `value`: the base64url-encoded signature value.
+- `keyId`: optional key identifier for lookup in a trust store, key management system, JWKS endpoint, or internal registry.
+- `publicKey`: optional embedded public key that enables self-contained cryptographic verification.
+- `certificatePath`: optional certificate chain material for workflows that need identity binding through X.509 trust anchors.
+
+The signature follows JSF signing semantics. For a simple signature, the signed payload is the entire AI SBOM JSON document after JSON Canonicalization Scheme processing, with only `metadata.sbomAuthorSignature.value` removed before canonicalization. Other signature fields, including `algorithm`, `keyId`, `publicKey`, and `certificatePath`, remain part of the signed payload.
+
+Embedding a `publicKey` makes cryptographic verification easier, but it does not by itself prove that the key belongs to the claimed SBOM author. Verifiers still need a trust decision based on `keyId`, `certificatePath`, an out-of-band trust store, or an organizational policy. If JSF `excludes` is used, verifiers should reject unexpected exclusions by policy.
 
 ## Consuming the Schema
 
