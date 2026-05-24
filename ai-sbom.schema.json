@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://shiftleftcyber.github.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json",
+  "$id": "https://shiftleftcyber.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json",
   "title": "AI Software Bill of Materials",
   "description": "An AI SBOM schema derived from the G7 SBOM for AI minimum elements document. It captures metadata, system properties, model properties, dataset properties, infrastructure, security properties, and KPIs.",
   "type": "object",

@@ -32,13 +32,13 @@ For automation, the schema requires `metadata.bomFormat` with the fixed value `A
 Use the immutable versioned URL when you want reproducible validation:
 
 ```text
-https://shiftleftcyber.github.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json
+https://shiftleftcyber.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json
 ```
 
 Use the latest URL when you intentionally want the newest compatible schema:
 
 ```text
-https://shiftleftcyber.github.io/ai-bom/schemas/ai-sbom.schema.json
+https://shiftleftcyber.io/ai-bom/schemas/ai-sbom.schema.json
 ```
 
 You can also pin directly to a Git tag:

@@ -7,13 +7,13 @@ This site publishes the AI SBOM JSON Schema for direct consumption by validators
 Use the immutable versioned schema URL for reproducible validation:
 
 ```text
-https://shiftleftcyber.github.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json
+https://shiftleftcyber.io/ai-bom/schemas/ai-sbom-1.0.0.schema.json
 ```
 
 Use the latest schema URL only when you intentionally want the newest compatible schema:
 
 ```text
-https://shiftleftcyber.github.io/ai-bom/schemas/ai-sbom.schema.json
+https://shiftleftcyber.io/ai-bom/schemas/ai-sbom.schema.json
 ```
 
 ## Repository
