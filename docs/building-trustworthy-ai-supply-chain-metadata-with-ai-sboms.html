@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Building Trustworthy AI Supply Chain Metadata with AI-SBOMs</title>
+    <meta name="description" content="Intro whitepaper on trustworthy AI supply chain metadata, AI-SBOMs, the ShiftLeftCyber AI-BOM schema proof of concept, and SecureSBOM signing and verification.">
+    <meta name="keywords" content="AI SBOM, AI BOM, Software Bill of Materials, AI supply chain security, SecureSBOM, SBOM signing, SBOM verification, JSON Schema, AI governance">
+    <meta name="author" content="Shift Left Cyber">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://shiftleftcyber.io/ai-bom/building-trustworthy-ai-supply-chain-metadata-with-ai-sboms.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Shift Left Cyber AI BOM">
+    <meta property="og:title" content="Building Trustworthy AI Supply Chain Metadata with AI-SBOMs">
+    <meta property="og:description" content="A practical intro whitepaper on making AI supply chain metadata machine-validatable and tamper-evident with AI-SBOMs.">
+    <meta property="og:url" content="https://shiftleftcyber.io/ai-bom/building-trustworthy-ai-supply-chain-metadata-with-ai-sboms.html">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Building Trustworthy AI Supply Chain Metadata with AI-SBOMs">
+    <meta name="twitter:description" content="Intro whitepaper on AI-SBOMs, schema validation, signing, and verification.">
+
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f8fafc;
+        --fg: #172033;
+        --muted: #4b5563;
+        --link: #0b63ce;
+        --panel: #ffffff;
+        --border: #d8dee8;
+        --code-bg: #eef2f7;
+        --table-head: #f1f5f9;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111827;
+          --fg: #f3f4f6;
+          --muted: #cbd5e1;
+          --link: #7ab7ff;
+          --panel: #172033;
+          --border: #334155;
+          --code-bg: #0f172a;
+          --table-head: #1f2937;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+      }
+
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 48px 20px;
+      }
+
+      nav {
+        margin-bottom: 28px;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 2.25rem;
+        line-height: 1.15;
+      }
+
+      h2 {
+        margin: 36px 0 12px;
+        font-size: 1.45rem;
+        line-height: 1.25;
+      }
+
+      p,
+      li {
+        color: var(--muted);
+      }
+
+      p {
+        margin: 0 0 16px;
+      }
+
+      ul {
+        margin: 0 0 18px;
+        padding-left: 24px;
+      }
+
+      li + li {
+        margin-top: 6px;
+      }
+
+      a {
+        color: var(--link);
+      }
+
+      code {
+        padding: 0.1em 0.3em;
+        border-radius: 4px;
+        background: var(--code-bg);
+        color: var(--fg);
+        overflow-wrap: anywhere;
+      }
+
+      table {
+        width: 100%;
+        margin: 16px 0 22px;
+        border-collapse: collapse;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--table-head);
+        color: var(--fg);
+        font-weight: 650;
+      }
+
+      td {
+        color: var(--muted);
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .eyebrow {
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .summary {
+        margin: 24px 0;
+        padding: 18px 20px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
+
+      .cta {
+        margin-top: 30px;
+        padding: 18px 20px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
+
+      .cta p:last-child,
+      .summary p:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 640px) {
+        main {
+          padding: 32px 16px;
+        }
+
+        h1 {
+          font-size: 1.9rem;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <a href="./">AI SBOM JSON Schema</a>
+      </nav>
+
+      <p class="eyebrow">Technical whitepaper intro | ShiftLeftCyber AI-BOM proof of concept | May 28, 2026</p>
+      <h1>Building Trustworthy AI Supply Chain Metadata with AI-SBOMs</h1>
+
+      <section class="summary" aria-labelledby="executive-summary">
+        <h2 id="executive-summary">Executive Summary</h2>
+        <p>
+          AI systems are assembled from more than application code. They depend on model artifacts,
+          datasets, prompts, runtime services, infrastructure, evaluation evidence, security
+          controls, and operational policies. Conventional software bills of materials are useful,
+          but they do not consistently capture the AI-specific facts that security, platform, and
+          governance teams need in order to evaluate model lineage, data exposure, deployment risk,
+          and trust boundaries.
+        </p>
+        <p>
+          This paper introduces a practical approach for AI Software Bills of Materials
+          (AI-SBOMs): a strict JSON Schema based on the G7 SBOM for AI minimum-element clusters,
+          combined with signing and verification workflows that make AI supply chain metadata
+          machine-validatable and tamper-evident.
+        </p>
+        <p>
+          The full version explores the complete schema model, SecureSBOM signing architecture,
+          verification flow, implementation risks, evaluation criteria, and recommended rollout plan.
+        </p>
+      </section>
+
+      <h2>Why This Topic Matters</h2>
+      <p>
+        AI adoption has moved faster than many inventory, assurance, and release-management
+        practices. Teams often know which application repository shipped a feature, but they may
+        not have a consistent machine-readable record of:
+      </p>
+      <ul>
+        <li>Which model or model version is in use.</li>
+        <li>Which datasets influenced training, fine-tuning, evaluation, or retrieval.</li>
+        <li>Which runtime services, endpoints, and hardware support inference.</li>
+        <li>Which security controls and vulnerability references apply.</li>
+        <li>Which performance, fairness, safety, and reliability indicators were measured.</li>
+        <li>Whether the metadata was modified after publication.</li>
+      </ul>
+      <p>
+        That gap matters because AI risk is shaped by system context, not just package
+        dependencies. A model artifact can be unchanged while the surrounding dataset, endpoint,
+        prompt policy, inference infrastructure, or trust policy changes materially.
+      </p>
+
+      <h2>The Core Problem</h2>
+      <p>
+        Many organizations are trying to govern AI systems with a mix of spreadsheets, model cards,
+        architecture notes, ticket metadata, and conventional SBOMs. Those artifacts may be useful
+        individually, but they are hard to validate automatically and difficult to enforce
+        consistently in CI, release, procurement, or audit workflows.
+      </p>
+      <p>
+        The core problem is not simply a lack of documentation. It is the lack of a strict,
+        interoperable contract for AI system metadata that can be produced, validated, signed,
+        exchanged, and verified by tools.
+      </p>
+      <p>
+        An AI-SBOM helps close that gap when it is treated as an automation surface rather than a
+        narrative document.
+      </p>
+
+      <h2>Key Concepts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AI-SBOM</td>
+            <td>A machine-readable inventory of AI system metadata, including model, dataset, infrastructure, security, and operational facts.</td>
+          </tr>
+          <tr>
+            <td>Minimum-element clusters</td>
+            <td>The metadata categories used to organize AI-SBOM content: metadata, system properties, models, datasets, infrastructure, security, and KPIs.</td>
+          </tr>
+          <tr>
+            <td>JSON Schema</td>
+            <td>A validation contract that defines required fields, field types, enumerations, and allowed structure.</td>
+          </tr>
+          <tr>
+            <td>Author signature</td>
+            <td>A cryptographic signature embedded in the AI-SBOM to make covered metadata tamper-evident.</td>
+          </tr>
+          <tr>
+            <td>Verification policy</td>
+            <td>The trust decision that determines whether a signature key, certificate, or key identifier is acceptable for a given workflow.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        The ShiftLeftCyber proof of concept defines an <code>AI-SBOM</code> JSON format with schema
+        version <code>1.0.0</code>. It uses a fixed discriminator, <code>metadata.bomFormat</code>,
+        so validators and APIs can route AI-SBOM documents without relying on filenames.
+      </p>
+
+      <h2>Common Challenges</h2>
+      <p>Organizations implementing AI-SBOMs usually encounter five practical challenges.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Challenge</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Inconsistent metadata</td>
+            <td>Different teams describe models, datasets, and systems differently, which limits automation.</td>
+          </tr>
+          <tr>
+            <td>Lifecycle timing</td>
+            <td>Some facts are known at build time, while others emerge during deployment, evaluation, or monitoring.</td>
+          </tr>
+          <tr>
+            <td>Trust ambiguity</td>
+            <td>An embedded public key can verify a signature mathematically, but it does not prove the signer was authorized.</td>
+          </tr>
+          <tr>
+            <td>Tool routing</td>
+            <td>SBOM platforms must distinguish AI-SBOMs from CycloneDX, SPDX, and other JSON documents.</td>
+          </tr>
+          <tr>
+            <td>Policy layering</td>
+            <td>Schema validity is not the same as organizational approval, risk acceptance, or compliance evidence.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        These challenges point to a layered model: validate the document shape, sign the
+        canonicalized metadata, verify integrity, then apply policy decisions above the schema and
+        signature layers.
+      </p>
+
+      <h2>What Organizations Should Consider</h2>
+      <p>
+        Before adopting AI-SBOMs, technical leaders should define where the format will be used and
+        what decisions it will support. Useful starting questions include:
+      </p>
+      <ul>
+        <li>Which AI systems require AI-SBOMs: internal copilots, customer-facing models, regulated workflows, high-impact systems, or all production deployments?</li>
+        <li>Which fields are mandatory for each risk tier?</li>
+        <li>Who is allowed to sign AI-SBOMs?</li>
+        <li>How are signing keys issued, rotated, revoked, and mapped to teams or systems?</li>
+        <li>Should signed AI-SBOMs be verified in CI, release gates, procurement intake, runtime deployment, or audit workflows?</li>
+        <li>Which semantic policies should run after schema and signature verification?</li>
+      </ul>
+      <p>
+        A practical rollout starts with inventory and validation, then adds signing, verification,
+        trust policy, and higher-level governance checks.
+      </p>
+
+      <h2>Preview of the Full Paper</h2>
+      <p>
+        In the complete paper, we provide the full technical analysis behind the ShiftLeftCyber
+        AI-BOM proof of concept and SecureSBOM implementation. The full version includes:
+      </p>
+      <ul>
+        <li>The complete AI-SBOM schema structure and minimum-element mapping.</li>
+        <li>The author-signature model and canonicalized signed payload.</li>
+        <li>SecureSBOM signing and verification architecture.</li>
+        <li>A decision matrix for embedded versus detached signature handling.</li>
+        <li>Security, compliance, and operational risk considerations.</li>
+        <li>Evaluation criteria for AI-SBOM tooling.</li>
+        <li>Implementation guidance for CI, release, offline verification, and policy workflows.</li>
+        <li>Common pitfalls and recommended next steps.</li>
+      </ul>
+
+      <section class="cta" aria-labelledby="call-to-action">
+        <h2 id="call-to-action">Call to Action</h2>
+        <p>
+          Sign up to access the full technical analysis, including the implementation framework,
+          risk matrix, and rollout checklist for validating, signing, distributing, and verifying
+          AI-SBOMs with SecureSBOM.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
