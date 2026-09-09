@@ -6,12 +6,12 @@
     <title>AI SBOM JSON Schema</title>
     <meta name="description" content="Published JSON Schema for AI Software Bill of Materials documents, based on G7 Cybersecurity Working Group minimum elements and designed for validators, CI workflows, and AI supply chain security automation.">
     <meta name="keywords" content="AI SBOM, SBOM for AI, Software Bill of Materials, JSON Schema, AI security, supply chain security, cybersecurity, SPDX, CycloneDX, AI governance, machine learning security">
-    <meta name="author" content="Shift Left Cyber">
+    <meta name="author" content="ShiftLeftCyber">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://shiftleftcyber.io/ai-bom/">
 
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Shift Left Cyber AI BOM">
+    <meta property="og:site_name" content="ShiftLeftCyber AI-BOM">
     <meta property="og:title" content="AI SBOM JSON Schema">
     <meta property="og:description" content="A machine-consumable JSON Schema for AI Software Bill of Materials documents based on G7 Cybersecurity Working Group minimum elements.">
     <meta property="og:url" content="https://shiftleftcyber.io/ai-bom/">
@@ -44,7 +44,7 @@
         ],
         "publisher": {
           "@type": "Organization",
-          "name": "Shift Left Cyber",
+          "name": "ShiftLeftCyber",
           "url": "https://shiftleftcyber.io/"
         },
         "distribution": [
@@ -64,103 +64,66 @@
       }
     </script>
 
-    <style>
-      :root {
-        color-scheme: light dark;
-        --bg: #f8fafc;
-        --fg: #172033;
-        --muted: #4b5563;
-        --link: #0b63ce;
-        --panel: #ffffff;
-        --border: #d8dee8;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #111827;
-          --fg: #f3f4f6;
-          --muted: #cbd5e1;
-          --link: #7ab7ff;
-          --panel: #172033;
-          --border: #334155;
-        }
-      }
-
-      body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: var(--bg);
-        color: var(--fg);
-        line-height: 1.55;
-      }
-
-      main {
-        max-width: 880px;
-        margin: 0 auto;
-        padding: 48px 20px;
-      }
-
-      h1 {
-        margin: 0 0 12px;
-        font-size: 2.25rem;
-        line-height: 1.15;
-      }
-
-      h2 {
-        margin-top: 32px;
-      }
-
-      p {
-        color: var(--muted);
-      }
-
-      ul {
-        color: var(--muted);
-      }
-
-      a {
-        color: var(--link);
-      }
-
-      code {
-        overflow-wrap: anywhere;
-      }
-
-      .schema-link {
-        display: block;
-        margin: 12px 0;
-        padding: 14px 16px;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-      }
-
-      .callout {
-        margin: 24px 0;
-        padding: 18px 20px;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-      }
-    </style>
+    <link rel="stylesheet" href="./assets/site.css">
   </head>
   <body>
-    <main>
-      <h1>AI SBOM JSON Schema</h1>
-      <p>
-        Published JSON Schema for AI Software Bill of Materials documents. Use these URLs directly
-        from validators, CI workflows, and AI supply chain security automation.
-      </p>
-
-      <div class="callout">
-        <p>
-          This schema provides a machine-readable format for describing the components,
-          relationships, datasets, models, infrastructure, security properties, and operational
-          indicators that make up an AI system. It is intended to help teams inventory AI systems
-          in a consistent way so downstream tools can validate, compare, scan, and reason about
-          AI supply chain information without relying on ad hoc spreadsheets or prose documents.
-        </p>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="https://shiftleftcyber.io/">ShiftLeftCyber</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="https://shiftleftcyber.io/securesbom/">SecureSBOM</a>
+          <a href="https://shiftleftcyber.io/ai-bom/">AI-BOM</a>
+          <a href="https://shiftleftcyber.io/faq/">FAQ</a>
+          <a href="https://shiftleftcyber.io/blog/">Blog</a>
+          <a class="portal-link" href="https://app.securesbom.com/">Portal</a>
+        </nav>
       </div>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="ai-bom-title">
+        <div class="hero-copy">
+          <p class="eyebrow">AI supply chain metadata</p>
+          <h1 id="ai-bom-title">AI SBOM JSON Schema</h1>
+          <p class="lead">
+            A machine-readable format for describing the models, datasets, infrastructure,
+            security properties, and operational indicators that make up an AI system.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="https://shiftleftcyber.io/ai-bom/schemas/ai-sbom.schema.json">View latest schema</a>
+            <a class="button" href="https://github.com/shiftleftcyber/ai-bom">GitHub repository</a>
+            <a class="button" href="./building-trustworthy-ai-supply-chain-metadata-with-ai-sboms.html">Read whitepaper intro</a>
+          </div>
+        </div>
+        <aside class="signal-panel" aria-label="AI-BOM schema summary">
+          <div class="signal-row">
+            <span class="signal-label">Format</span>
+            <span class="signal-value"><code>AI-SBOM</code> JSON Schema</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">Version</span>
+            <span class="signal-value">1.0.0 with a latest schema URL</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">Use Cases</span>
+            <span class="signal-value">Validation, governance, inventory, signing, and verification</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="content-grid" aria-label="AI-BOM focus areas">
+        <article class="card">
+          <h3>Model and Dataset Provenance</h3>
+          <p>Track model identifiers, lineage, training context, evaluation datasets, and system relationships.</p>
+        </article>
+        <article class="card">
+          <h3>Infrastructure Context</h3>
+          <p>Capture runtime services, endpoints, hardware dependencies, data flows, and deployment context.</p>
+        </article>
+        <article class="card">
+          <h3>Signed Evidence</h3>
+          <p>Use author signatures to make AI supply chain metadata tamper-evident and easier to verify.</p>
+        </article>
+      </section>
 
       <h2>What This Is</h2>
       <p>
@@ -252,5 +215,10 @@
         <a href="https://github.com/shiftleftcyber/ai-bom">github.com/shiftleftcyber/ai-bom</a>.
       </p>
     </main>
+    <footer class="site-footer">
+      <div class="footer-wrap">
+        ShiftLeftCyber builds SBOM, AI-BOM, and software supply chain security tooling for audit-ready transparency.
+      </div>
+    </footer>
   </body>
 </html>
