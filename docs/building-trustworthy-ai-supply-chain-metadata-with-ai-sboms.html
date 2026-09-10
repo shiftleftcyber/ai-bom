@@ -79,17 +79,38 @@
         }
       }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/site.css">
   </head>
   <body>
     <header class="site-header">
+      <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+        <ul>
+          <li><a href="https://shiftleftcyber.io/securesbom/">SecureSBOM</a></li>
+          <li><a href="https://shiftleftcyber.io/ai-bom/">AI-BOM</a></li>
+          <li><a href="https://shiftleftcyber.io/faq/">FAQ</a></li>
+          <li><a href="https://shiftleftcyber.io/blog/">Blog</a></li>
+          <li><a href="https://shiftleftcyber.io/about/">About</a></li>
+          <li><a href="https://shiftleftcyber.io/contactus/">Contact</a></li>
+          <li><a href="https://app.securesbom.com/">Portal</a></li>
+        </ul>
+      </div>
       <div class="nav-wrap">
-        <a class="brand" href="https://shiftleftcyber.io/">ShiftLeftCyber</a>
+        <a class="brand" href="https://shiftleftcyber.io/">
+          <img class="brand-logo" src="./assets/ShiftLeftCyberMainLogoUpdated.png" alt="SBOM management solutions by ShiftLeftCyber">
+        </a>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
+          <span class="top"></span>
+          <span class="middle"></span>
+          <span class="bottom"></span>
+        </button>
         <nav class="site-nav" aria-label="Main navigation">
           <a href="https://shiftleftcyber.io/securesbom/">SecureSBOM</a>
           <a href="https://shiftleftcyber.io/ai-bom/">AI-BOM</a>
           <a href="https://shiftleftcyber.io/faq/">FAQ</a>
           <a href="https://shiftleftcyber.io/blog/">Blog</a>
+          <a href="https://shiftleftcyber.io/about/">About</a>
+          <a href="https://shiftleftcyber.io/contactus/">Contact</a>
           <a class="portal-link" href="https://app.securesbom.com/">Portal</a>
         </nav>
       </div>
@@ -279,11 +300,45 @@
           <a href="mailto:info@shiftleftcyber.io?subject=Full%20AI-SBOM%20whitepaper%20request">info@shiftleftcyber.io</a>.
         </p>
       </section>
+
+      <section class="ready-cta" aria-labelledby="ready-to-get-started">
+        <div class="ready-cta-inner">
+          <div>
+            <h2 id="ready-to-get-started">Ready to get started?</h2>
+            <p>Use the self-service portal, or contact us if you want a guided walkthrough.</p>
+          </div>
+          <div class="ready-cta-actions">
+            <a class="button primary" href="https://app.securesbom.com/">Open Portal</a>
+            <a class="button" href="https://shiftleftcyber.io/contactus/?type=demo">Request Demo</a>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="site-footer">
       <div class="footer-wrap">
-        ShiftLeftCyber builds SBOM, AI-BOM, and software supply chain security tooling for audit-ready transparency.
+        <div>&copy; ShiftLeftCyber 2026 All Rights Reserved.</div>
+        <div class="footer-links">
+          <a href="https://shiftleftcyber.io/">Home</a>
+          <a href="https://github.com/shiftleftcyber/">Github</a>
+        </div>
       </div>
     </footer>
+    <script>
+      (function () {
+        var menuButton = document.getElementById("menuButton");
+        var mobileOverlay = document.getElementById("mobileOverlay");
+        if (!menuButton || !mobileOverlay) {
+          return;
+        }
+
+        menuButton.addEventListener("click", function () {
+          var isOpen = mobileOverlay.classList.toggle("open");
+          menuButton.classList.toggle("is-open", isOpen);
+          menuButton.setAttribute("aria-expanded", String(isOpen));
+          mobileOverlay.setAttribute("aria-hidden", String(!isOpen));
+          document.body.classList.toggle("scroll-lock", isOpen);
+        });
+      })();
+    </script>
   </body>
 </html>
